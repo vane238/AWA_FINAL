@@ -1,0 +1,54 @@
+
+<!-- Navbar -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+  <!-- Brand -->
+    <a class="navbar-brand" routerLink="{{auth.isLoggedIn() ? '/dashboard' : '/'}}">
+      <!-- <a class="navbar-brand" href="#">
+          <img src="assets/images/icon.png" height="80" >
+     </a>  -->
+     <i class="fa fa-graduation-cap"></i>
+      <strong>{{title}}</strong>
+    </a><div class="container">
+
+    
+
+    <!-- Collapse -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Links -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+      <!-- Left -->
+      <ul class="navbar-nav mr-auto">
+       
+      </ul>
+
+      <!-- Right -->
+      <ul class="navbar-nav nav-flex-icons"> <li class="nav-item">
+          <a class="nav-link" href="#"><i class="fa fa-home"></i>Home
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+          <li *ngIf="!auth.isLoggedIn()" class="nav-item"><a class="nav-link" routerLink="/login"><i class="fa fa-sign-in"></i>Sign in</a></li>
+          <li *ngIf="!auth.isLoggedIn()" class="nav-item"><a class="nav-link" routerLink="/register">Register</a></li>  
+          <li *ngIf="auth.isLoggedIn()" class="nav-item"><a class="nav-link" routerLink="/profile">{{ auth.getUserDetails()?.name | titlecase}}</a></li>
+          <li *ngIf="auth.isLoggedIn()" class="nav-item"><a class="nav-link" routerLink="/dashboard"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+          <li *ngIf="auth.isLoggedIn()" class="nav-item"><a class="nav-link" (click)="auth.logout()"><i class="fa fa-sign-out"></i>Logout</a></li>
+       
+        
+      </ul>
+
+    </div>
+
+  </div>
+</nav>
+<!-- Navbar -->
+
+<router-outlet></router-outlet>
+<script type="text/javascript">
+  // Animations initialization
+  new WOW().init();
+</script>
